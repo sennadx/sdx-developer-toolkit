@@ -1,0 +1,38 @@
+---
+- name: Dummy Playbook for Installing Developer Tools
+  hosts: all  # Target all hosts in your inventory
+  become: yes   # Escalate privileges (e.g., use sudo)
+
+  vars:
+    username: alice  # Define variables for customization
+
+  tasks:
+    - name: Install Git
+      package:
+        name: git
+        state: present
+
+    - name: Install VS Code
+      package:
+        name: code  # Package name varies by OS
+        state: present
+
+    - name: Create a Project Directory
+      file:
+        path: /home/{{ username }}/myproject
+        state: directory
+
+    - name: Clone a Git Repository
+      git:
+        repo: https://github.com/your-org/your-repo.git
+        dest: /home/{{ username }}/myproject
+
+    - name: Create a Sample Python File
+      copy:
+        content: |
+          print("Hello from Ansible!")
+        dest: /home/{{ username }}/myproject/hello.py
+
+    - name: Display a Message
+      debug:
+        msg: "Setup Complete!"
