@@ -1,0 +1,84 @@
+---
+# - name: Install AWS CLI
+#   when: devtoolkit.cloud.aws_cli
+#   ansible.builtin.dnf:
+#     name: awscli2
+#     state: present
+
+- name: AWS CLI v2 installation
+  when: devtoolkit.cloud.aws_cli
+  block:
+
+    - name: Create temporary directory
+      ansible.builtin.tempfile:
+        state: directory
+      register: tmp_dir
+
+    - name: Download AWS CLI installer
+      ansible.builtin.get_url:
+        url: "{{ aws_cli_pkg_url }}"
+        dest: "{{ tmp_dir.path }}/awscliv2.zip"
+        mode: 0644
+
+    - name: Unzip AWS CLI installer
+      ansible.builtin.unarchive:
+        src: "{{ tmp_dir.path }}/awscliv2.zip"
+        dest: "{{ tmp_dir.path }}"
+
+    - name: Install AWS CLI v2
+      ansible.builtin.command:
+        cmd: "{{ tmp_dir.path }}/aws/install --update"
+        chdir: "{{ tmp_dir.path }}"
+
+    - name: Clean up temporary directory
+      ansible.builtin.file:
+        path: "{{ tmp_dir.path }}"
+        state: absent
+
+- name: Install Azure CLI
+  when: devtoolkit.cloud.az_cli
+  block:
+
+    - name: Add Azure CLI signing key
+      ansible.builtin.apt_key:
+        url: "{{ azure_apt_key }}"
+        state: present
+
+    - name: Add Azure CLI repository
+      ansible.builtin.apt_repository:
+        repo: "deb {{ azure_apt_url }} {{ ansible_distribution_release }} main"
+        state: present
+        filename: azure-cli
+
+    - name: Install Azure CLI
+      ansible.builtin.apt:
+        name: azure-cli
+        update_cache: true
+      register: task_result
+      until: task_result is success
+      retries: 10
+      delay: 2
+
+- name: Google Cloud CLI installation
+  when: devtoolkit.cloud.gcp_cli
+  block:
+    - name: Add Google Cloud signing key
+      ansible.builtin.apt_key:
+        url: "{{ gcloud_apt_key }}"
+        state: present
+
+    - name: Add Google Cloud repository
+      ansible.builtin.apt_repository:
+        repo: "deb {{ gcloud_apt_url }} {{ gcloud_apt_repo }} main"
+        state: present
+        filename: google-cloud-sdk
+
+    - name: Install Google Cloud SDK
+      ansible.builtin.apt:
+        name: google-cloud-sdk
+        update_cache: true
+      register: task_result
+      until: task_result is success
+      retries: 10
+      delay: 2
+

@@ -1,0 +1,66 @@
+---
+- name: Install Developer Toolkit
+  gather_facts: false
+  hosts: localhost
+
+  pre_tasks:
+
+    - name: Gather OS facts
+      ansible.builtin.setup:
+        gather_subset:
+          - os_family
+
+    - name: Load Checklist vars
+      ansible.builtin.include_vars:
+        file: checklist.yml
+        dir: ../defaults
+
+  roles:
+
+    - role: cloud # Provides Cloud Operation Tools
+      when: devtoolkit.cloud.enabled or devtoolkit.all
+
+    - role: container # Provides Container Runtime & Tools
+      when: devtoolkit.container.enabled or devtoolkit.all
+
+    - role: database # Provides Database Tools
+      when: devtoolkit.database.enabled or devtoolkit.all
+
+    - role: devops # Provides DevOps Tools
+      when: devtoolkit.devops.enabled or devtoolkit.all
+
+    - role: golang # Provides Golang Runtime & Tools
+      when: devtoolkit.golang.enabled or devtoolkit.all
+
+    - role: groovy # Provides Groovy Runtime & Tools
+      when: devtoolkit.groovy.enabled or devtoolkit.all
+
+    - role: ide # Provides IDE Development Tools
+      when: devtoolkit.ide.enabled or devtoolkit.all
+
+    - role: java # Provides Java Runtime & Tools
+      when: devtoolkit.java.enabled or devtoolkit.all
+
+    - role: kotlin # Provides Kotlin Runtime & Tools
+      when: devtoolkit.kotlin.enabled or devtoolkit.all
+
+    - role: kubernetes # Provides Kubernetes Tools
+      when: devtoolkit.kubernetes.enabled or devtoolkit.all
+
+    - role: optional # Provides Optional (awesome) Tools
+      when: devtoolkit.optional.enabled or devtoolkit.all
+
+    - role: php # Provides PHP Runtime & Tools
+      when: devtoolkit.php.enabled or devtoolkit.all
+
+    - role: python # Provides Python Runtime & Tools
+      when: devtoolkit.python.enabled or devtoolkit.all
+
+    - role: ruby # Provides Ruby Runtime & Tools
+      when: devtoolkit.ruby.enabled or devtoolkit.all
+
+    - role: rust # Provides Rust Runtime & Tools
+      when: devtoolkit.rust.enabled or devtoolkit.all
+
+    - role: utils # Provides Utilities Tools
+      when: devtoolkit.utils.enabled or devtoolkit.all

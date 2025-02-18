@@ -1,0 +1,13 @@
+---
+- name: Verify awscli installation
+  command: aws --version
+  register: is_awscli_present
+  failed_when: awscli_version_check.rc != 0
+
+- name: Verify Azure CLI installation
+  command: az --version
+  register: az_version_check
+  failed_when: az_version_check.rc != 0
+
+- debug:
+  msg: "Azure CLI version: {{ az_version_check.stdout }}"

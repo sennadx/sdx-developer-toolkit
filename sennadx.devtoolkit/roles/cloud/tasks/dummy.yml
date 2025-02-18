@@ -1,0 +1,28 @@
+---
+- name: Dummy Playbook
+  gather_facts: false
+  hosts: localhost
+
+  tasks:
+
+    - name: Gather OS facts
+      ansible.builtin.setup:
+        gather_subset:
+          - os_family
+
+    - name: Dummy include_vars
+      ansible.builtin.include_vars: ../defaults/main.yml
+    
+    - name: Include Fedora/RHEL tasks
+      when: ansible_os_family == 'RedHat'
+      ansible.builtin.include_tasks: fedora.yml
+
+    - name: Include Ubuntu/Mint tasks
+      when: ansible_os_family == 'Debian'
+      ansible.builtin.include_tasks: ubuntu.yml
+
+    - name: Dummy include_vars
+      ansible.builtin.include_vars: ../defaults/main.yml
+
+    - name: Dummy include_tasks
+      ansible.builtin.include_tasks: ubuntu.yml

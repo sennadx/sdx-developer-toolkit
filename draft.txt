@@ -1,0 +1,45 @@
+python
+pipx
+
+sdkman
+java17 (instala via sdkman)
+maven
+gradle
+
+nvm
+node
+npm
+yarn
+
+golang
+
+dnf install zsh
+ohmyzsh
+cascadia-code-fonts
+
+
+spotify
+google chrome 
+vs code
+intellij community
+flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community
+discord
+slack
+tilix
+
+podman
+podman desktop
+sudo dnf install podman-compose
+kind
+k9s
+
+
+terraform
+pulumi
+git
+
+dagger
+
+
+peek (screen recorder)
+flameshot (screenshot)

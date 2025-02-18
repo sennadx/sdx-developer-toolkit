@@ -1,0 +1,118 @@
+---
+devtoolkit:
+  all: false
+  cloud:
+    enabled: true
+    tool:
+      aws_cli: true
+      az_cli: true
+      gcp_cli: true
+  container:
+    enabled: true
+    tool:
+      buildah: false
+      buildx: false
+      docker: false
+      docker_compose: false
+      docker_desktop: false
+      podman: true
+      podman-compose: true
+      podman-desktop: true
+      rancher-desktop: true
+      skopeo: false
+  database:
+    enabled: true
+    tool:
+      beekeeper: false
+      dbeaver: false
+      dbgate: false
+      studio3t: false
+  devops:
+    enabled: true
+    tool:
+      dagger: true
+      pulumi: true
+      terraform: true
+  dotnet:
+    enabled: false
+    runtime:
+      aspnetcore-6-lts: true
+      aspnetcore-8-lts: true
+      sdk-6-lts: true
+      sdk-8-lts: true
+    tool:
+      - TBD
+  golang: true
+  groovy: true
+  ide:
+    enabled: true
+    tool:
+      goland: false
+      intellij: false
+      pycharm: false
+      rider: false
+      visualstudio: false
+      vscode: false
+      webstorm: false
+  java:
+    enabled: true
+    runtime:
+      jdk-11-temurin-lts: true
+      jdk-17-temurin-lts: true
+      jdk-21-temurin-lts: true
+      jdk-8-temurin-lts: true
+    tool:
+      gradle: true
+      maven: true
+      sdkman: true
+  javascript:
+    enabled: true
+    runtime:
+      nodejs-18-lts: true
+      nodejs-20-lts: true
+      nodejs-22-lts: true
+    tool:
+      corepack: true
+      nvm: true
+      pnpm: true
+      yarn: true
+  kotlin:
+    enabled: true
+    runtime:
+      - TBD
+    tool:
+      - TBD
+  kubernetes:
+    enabled: true
+    tool:
+      eksctl: true
+      helm: true
+      k9s: true
+      kind: true
+      kubectl: true
+      kustomize: true
+  php:
+    enabled: true
+    runtime:
+      - TBD
+    tool:
+      - TBD
+  python:
+    enabled: true
+    runtime:
+      python2: false
+      python3: true
+    tool:
+      pip: true
+      pipx: true
+  ruby: TBD
+  rust:
+    enabled: true
+    runtime:
+      - TBD
+    tool:
+      cargo: true
+  utils:
+    enabled: true
+    tool:
+      serverless: true

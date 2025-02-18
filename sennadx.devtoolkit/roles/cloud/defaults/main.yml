@@ -1,0 +1,19 @@
+---
+aws_cli_pkg_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+
+azure_apt_key: https://packages.microsoft.com/keys/microsoft.asc
+azure_apt_url: https://packages.microsoft.com/repos/azure-cli
+
+gcloud_yum_baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
+gcloud_yum_repo_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+gcloud_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
+
+gcloud_apt_key: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+gcloud_apt_url: http://packages.cloud.google.com/apt
+gcloud_apt_repo: cloud-sdk
+
+devtoolkit:
+  cloud:
+    aws_cli: true
+    az_cli: true
+    gcp_cli: true

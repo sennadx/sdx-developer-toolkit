@@ -1,0 +1,16 @@
+---
+- name: Include Fedora/RHEL tasks
+  when: ansible_os_family == 'RedHat'
+  ansible.builtin.include_tasks: fedora.yml
+
+- name: Include Ubuntu/Mint tasks
+  when: ansible_os_family == 'Debian'
+  ansible.builtin.include_tasks: ubuntu.yml
+
+# - name: Include Apple macOS tasks
+#   when: ansible_os_family == 'Darwin'
+#   ansible.builtin.include_tasks: macos.yml
+
+# - name: Include MSFT Windows tasks
+#   when: ansible_os_family == 'Windows'
+#   ansible.builtin.include_tasks: windows.yml
